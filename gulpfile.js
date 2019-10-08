@@ -34,6 +34,6 @@ gulp.task('build', gulp.parallel('minify', 'copy'));
 gulp.task('zip', async () => {
   gulp
     .src('dist/*')
-    .pipe(zip('spinefeed.zip'))
+    .pipe(zip('spineedit.zip'))
     .pipe(gulp.dest('dist'));
 });
