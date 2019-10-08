@@ -8,6 +8,8 @@ A browser extension that fosters collaboration and makes it easy to edit Microso
 
 When working with Microsoft docs in the browser, you can open an editor in the private repository for quick edits and collaboration.
 
+![Example: Click the edit button to open the editor](440x280.png)
+
 ## Installation
 
 Install via the [Google web store](https://chrome.google.com/webstore/detail/edit-page-azure-docs/kfdadnfiopehhcedhlflpioebhihpkia).
