@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const replace = require('gulp-replace');
 const minify = require('gulp-minify');
 const path = require('path');
+const zip = require('gulp-zip');
 const GA_ACCOUNT_KEY = require('./ga-config').GA_ACCOUNT_KEY;
 
 gulp.task('minify', async () => {
@@ -29,3 +30,10 @@ gulp.task('copy', async () => {
 });
 
 gulp.task('build', gulp.parallel('minify', 'copy'));
+
+gulp.task('zip', async () => {
+  gulp
+    .src('dist/*')
+    .pipe(zip('spinefeed.zip'))
+    .pipe(gulp.dest('dist'));
+});
