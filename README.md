@@ -21,8 +21,8 @@ When you attempt to edit an article:
 1. GitHub's page editor is opened
 1. The commit description is pre-populated with the article author's GitHub username
 
-| Website | Click on the... |
-|---------|-----------------|
+| Website | Click on the... | |
+|---------|-----------------| --- |
 | docs.microsoft.com | *Edit* button | ![Example: Click the edit button to open the editor](440x280.png)|
 | github.com | _Content Source_ link in an article issue | ![Example: Click the Content Source link to open the editor](440x280-github.png)|
 
