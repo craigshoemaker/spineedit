@@ -30,8 +30,6 @@ const actions = {
         - source: Domain hostname, for example: 'docs.microsoft.com' or 'github.com'
       };
     */
-    console.log(message);
-    console.log("sending GA Event");
     ga('send', 'event', message.action, message.url, message.source);
   }
 }
