@@ -44,5 +44,5 @@
     "http://github.com/MicrosoftDocs/*",
     "https://github.com/MicrosoftDocs/*"
   ],
-	"content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'"
+  "content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'"
 }
