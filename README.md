@@ -10,7 +10,7 @@ When working with Microsoft docs in the browser, you can open an editor in the p
 
 ## Installation
 
-Install via the [Google web store](https://chrome.google.com/webstore/detail/edit-page-azure-docs/kfdadnfiopehhcedhlflpioebhihpkia).
+Install via the [Google web store](https://chrome.google.com/webstore/detail/spineedit/llhlgkbkfdfcbjbfnnakfpgmemopbbnf).
 
 ## Usage
 
