@@ -35,7 +35,9 @@ const actions = {
 }
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  sendMessage({ action: 'load' });
+  if(changeInfo.status == "complete"){
+    sendMessage({ action: 'load' });
+  }
 });
 
 chrome.runtime.onInstalled.addListener(() => {
