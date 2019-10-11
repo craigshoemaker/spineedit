@@ -28,8 +28,13 @@ const domains = {
       return author;
     },
     rules: [
+
+      // switch from the read-only view to the editor
       { apply: url => url.replace('/blob/', '/edit/') },
+
+      // switch from the live branch to the master branch
       { apply: url => url.replace('/live/', '/master/') },
+      
       { apply: url => commonRules.addDescription(url) },
       { apply: (url, author) => commonRules.addAuthor(url, author) },
     ],
@@ -57,10 +62,19 @@ const domains = {
       return author;
     },
     rules: [
+      // The GitHub template sometimes doesn't do this replacement on the server
+      // and other times it does, so handling the redirect here for stability
       { apply: url => url.replace('/github.com/Microsoft/', '/github.com/MicrosoftDocs/') },
+
+      // switch localized repos to English
       { apply: url => url.replace(/\.[a-zA-Z]{2}-[a-zA-Z]{2}\//, '/') },
+
+      // switch from read-only view to the editor
       { apply: url => url.replace('/blob/', '/edit/') },
+
+      // switch to the private repository
       { apply: url => url.replace(/\/(.*)-docs\//, '$1-docs-pr/') },
+
       { apply: url => commonRules.addDescription(url) },
       { apply: (url, author) => commonRules.addAuthor(url, author) },
       { apply: url => url.replace(/https?:\/\/?github.com/, '') },
