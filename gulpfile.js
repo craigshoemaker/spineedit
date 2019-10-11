@@ -8,6 +8,8 @@ const GA_ACCOUNT_KEY = require('./ga-config').GA_ACCOUNT_KEY;
 gulp.task('minify', async () => {
   gulp
     .src(['src/*.js'])
+    .pipe(replace('IS_PRODUCTION = false', 'IS_PRODUCTION = true'))
+    .pipe(replace('{GA_ACCOUNT_KEY}', GA_ACCOUNT_KEY))
     .pipe(
       minify({
         ext: {
@@ -16,8 +18,6 @@ gulp.task('minify', async () => {
         noSource: true,
       }),
     )
-    .pipe(replace('IS_PRODUCTION=!1', 'IS_PRODUCTION=1'))
-    .pipe(replace('{GA_ACCOUNT_KEY}', GA_ACCOUNT_KEY))
     .pipe(gulp.dest('dist'));
 });
 
