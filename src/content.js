@@ -1,6 +1,6 @@
 'use strict';
 
-let domain = null;
+let domain;
 
 const commonRules = {
   addDescription: url => `${url}?description=`,
@@ -93,11 +93,9 @@ const transformation = {
 };
 
 const load = () => {
-  if(!domain) {
-    domain = domains[window.location.hostname];
-    if (domain) {
-      transformation.run(domain);
-    }
+  domain = domains[window.location.hostname];
+  if (domain) {
+    transformation.run(domain);
   }
 };
 
