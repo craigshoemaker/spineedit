@@ -24,6 +24,10 @@ const actions = {
   }
 }
 
+chrome.tabs.onActivated.addListener(function(tab, changeInfo) {
+  chrome.tabs.sendMessage(tab.tabId, { action: 'activated' });
+});
+
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   if(changeInfo.status == "complete"){
     chrome.tabs.sendMessage(tabId, { action: 'updateComplete' });

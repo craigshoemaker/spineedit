@@ -1,6 +1,6 @@
 'use strict';
 
-let domain;
+let domain = null;
 
 const commonRules = {
   addDescription: url => `${url}?description=`,
@@ -91,13 +91,18 @@ const transformation = {
   },
 };
 
-const actions = {
-  load: () => {
+const load = () => {
+  if(!domain) {
     domain = domains[window.location.hostname];
     if (domain) {
       transformation.run(domain);
     }
   }
+};
+
+const actions = {
+  activated: () => load(),
+  updateComplete: () => load()
 }
 
 chrome.runtime.onMessage.addListener(request => {
