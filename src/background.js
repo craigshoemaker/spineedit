@@ -10,16 +10,6 @@ const GA_ACCOUNT_KEY = '{GA_ACCOUNT_KEY}';
   ga('set', 'checkProtocolTask', function(){}); // Removes failing protocol check. @see: http://stackoverflow.com/a/22152353/1958200
   ga('require', 'displayfeatures');
 
-function sendMessage(message) {
-  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-    const tab = tabs[0];
-    if (tab) {
-      const id = tab.id;
-      chrome.tabs.sendMessage(id, message);
-    }
-  });
-}
-
 const actions = {
   log: message => {
 
@@ -36,7 +26,7 @@ const actions = {
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   if(changeInfo.status == "complete"){
-    sendMessage({ action: 'load' });
+    chrome.tabs.sendMessage(tabId, { action: 'updateComplete' });
   }
 });
 
