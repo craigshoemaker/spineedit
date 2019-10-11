@@ -16,6 +16,7 @@ gulp.task('minify', async () => {
         noSource: true,
       }),
     )
+    .pipe(replace('IS_PRODUCTION=!1', 'IS_PRODUCTION=1'))
     .pipe(replace('{GA_ACCOUNT_KEY}', GA_ACCOUNT_KEY))
     .pipe(gulp.dest('dist'));
 });

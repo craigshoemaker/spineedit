@@ -1,6 +1,7 @@
 'use strict';
 
 const GA_ACCOUNT_KEY = '{GA_ACCOUNT_KEY}';
+const IS_PRODUCTION = false;
 
 // Standard Google Universal Analytics code. Replace - _AnalyticsCode with GA_ACCOUNT_KEY
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -21,7 +22,9 @@ const actions = {
         - source: Domain hostname, for example: 'docs.microsoft.com' or 'github.com'
       };
     */
-    ga('send', 'event', message.action, message.url, message.source);
+   if (IS_PRODUCTION) {
+     ga('send', 'event', message.action, message.url, message.source);
+   }
   }
 }
 
