@@ -57,6 +57,7 @@ const domains = {
       return author;
     },
     rules: [
+      { apply: url => url.replace('/github.com/Microsoft/', '/github.com/MicrosoftDocs/') },
       { apply: url => url.replace('/blob/', '/edit/') },
       { apply: url => url.replace(/\/(.*)-docs\//, '$1-docs-pr/') },
       { apply: url => commonRules.addDescription(url) },
