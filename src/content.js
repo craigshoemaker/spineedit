@@ -6,7 +6,7 @@ const commonRules = {
   addDescription: url => `${url}?description=`,
   addIssueURL: (url, issueURL) =>{
     issueURL = encodeURI(`Github Reference Issue: ` + window.location.href);
-    return `${url}${issueURL}`
+    return `${url}${issueURL}`;
   },
   addAuthor: (url, author) => {
     if (author.length > 0) {
