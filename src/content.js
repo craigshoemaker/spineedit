@@ -4,7 +4,10 @@ let domain;
 
 const commonRules = {
   addDescription: url => `${url}?description=`,
-
+  addIssueURL: (url, issueURL) =>{
+    issueURL = encodeURI(`Github Reference Issue: ` + window.location.href);
+    return `${url}${issueURL}`
+  },
   addAuthor: (url, author) => {
     if (author.length > 0) {
       author = `%0A%0Acc%3A%20%40${author}`;
@@ -76,6 +79,7 @@ const domains = {
       { apply: url => url.replace(/\/(.*)-docs\//, '$1-docs-pr/') },
 
       { apply: url => commonRules.addDescription(url) },
+      { apply: (url, issueURL) => commonRules.addIssueURL(url , issueURL) },
       { apply: (url, author) => commonRules.addAuthor(url, author) },
       { apply: url => url.replace(/https?:\/\/?github.com/, '') },
     ],
