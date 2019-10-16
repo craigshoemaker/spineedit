@@ -2,14 +2,21 @@
 
 let domain;
 
+const LINE_BREAK = '%0A';
+
 const commonRules = {
   addDescription: url => `${url}?description=`,
+  addLineBreak: url => `${url}${LINE_BREAK}`,
+  addDivider: url => `${url}-------${LINE_BREAK}`,
   addAuthor: (url, author) => {
     if (author.length > 0) {
-      author = `%0A%0Acc%3A%20%40${author}`;
+      const colon = '%3A';
+      const space = '%20';
+      const ampersand = '%40';
+      author = `cc${colon}${space}${ampersand}${author}`;
     }
     return `${url}${author}`;
-  }
+  },
 };
 
 const domains = {
@@ -27,14 +34,16 @@ const domains = {
       return author;
     },
     rules: [
-
       // switch from the read-only view to the editor
       { apply: url => url.replace('/blob/', '/edit/') },
 
       // switch from the live branch to the master branch
       { apply: url => url.replace('/live/', '/master/') },
-      
+
       { apply: url => commonRules.addDescription(url) },
+      { apply: url => commonRules.addLineBreak(url) },
+      { apply: url => commonRules.addLineBreak(url) },
+      { apply: url => commonRules.addDivider(url) },
       { apply: (url, author) => commonRules.addAuthor(url, author) },
     ],
   },
@@ -74,8 +83,18 @@ const domains = {
       // switch to the private repository
       { apply: url => url.replace(/\/(.*)-docs\//, '$1-docs-pr/') },
       { apply: url => commonRules.addDescription(url) },
-      { apply: url => url + encodeURI(`Github Reference Issue: ` + window.location.href) },
+
+      { apply: url => commonRules.addLineBreak(url) },
+      { apply: url => commonRules.addLineBreak(url) },
+      { apply: url => commonRules.addDivider(url) },
+
       { apply: (url, author) => commonRules.addAuthor(url, author) },
+
+      { apply: url => commonRules.addLineBreak(url) },
+
+      // Add source GitHub issue URL
+      { apply: url => url + encodeURI(`GitHub Issue: ` + window.location.href) },
+
       { apply: url => url.replace(/https?:\/\/?github.com/, '') },
     ],
   },
@@ -97,10 +116,10 @@ const transformation = {
           const message = {
             action: 'log',
             url: domain.getPublicUrl(),
-            source: window.location.hostname
+            source: window.location.hostname,
           };
           chrome.runtime.sendMessage(message);
-        })
+        });
       });
     }
   },
@@ -115,11 +134,11 @@ const load = () => {
 
 const actions = {
   activated: () => load(),
-  updateComplete: () => load()
-}
+  updateComplete: () => load(),
+};
 
 chrome.runtime.onMessage.addListener(request => {
-  if(actions[request.action]) {
+  if (actions[request.action]) {
     actions[request.action]();
   }
 });
