@@ -28,7 +28,9 @@
         "https://docs.microsoft.com/*", 
         "http://docs.microsoft.com/*",
         "http://github.com/MicrosoftDocs/*",
-        "https://github.com/MicrosoftDocs/*"
+        "https://github.com/MicrosoftDocs/*",
+        "http://github.com/issues/*",
+        "https://github.com/issues/*"
       ],
       "js": ["content.js"],
       "run_at": "document_idle",
@@ -42,7 +44,9 @@
     "https://docs.microsoft.com/*",
     "http://docs.microsoft.com/*",
     "http://github.com/MicrosoftDocs/*",
-    "https://github.com/MicrosoftDocs/*"
+    "https://github.com/MicrosoftDocs/*",
+    "http://github.com/issues/*",
+    "https://github.com/issues/*"
   ],
   "content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'"
 }
