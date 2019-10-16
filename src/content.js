@@ -4,7 +4,6 @@ let domain;
 
 const commonRules = {
   addDescription: url => `${url}?description=`,
-
   addAuthor: (url, author) => {
     if (author.length > 0) {
       author = `%0A%0Acc%3A%20%40${author}`;
@@ -74,8 +73,8 @@ const domains = {
 
       // switch to the private repository
       { apply: url => url.replace(/\/(.*)-docs\//, '$1-docs-pr/') },
-
       { apply: url => commonRules.addDescription(url) },
+      { apply: url => url + encodeURI(`Github Reference Issue: ` + window.location.href) },
       { apply: (url, author) => commonRules.addAuthor(url, author) },
       { apply: url => url.replace(/https?:\/\/?github.com/, '') },
     ],
