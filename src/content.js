@@ -79,7 +79,7 @@ const domains = {
       { apply: url => url.replace(/\/(.*)-docs\//, '$1-docs-pr/') },
 
       { apply: url => commonRules.addDescription(url) },
-      { apply: (url, issueURL) => commonRules.addIssueURL(url , issueURL) },
+      { apply: url => commonRules.addIssueURL(url) },
       { apply: (url, author) => commonRules.addAuthor(url, author) },
       { apply: url => url.replace(/https?:\/\/?github.com/, '') },
     ],
