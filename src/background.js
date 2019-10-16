@@ -35,6 +35,7 @@ chrome.tabs.onActivated.addListener(function(tab, changeInfo) {
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   if(changeInfo.status == "complete"){
     chrome.tabs.sendMessage(tabId, { action: 'updateComplete' });
+    setTimeout( function(){chrome.tabs.sendMessage(tabId, { action: 'updateComplete' }); }, 2000);
   }
 });
 
