@@ -102,7 +102,7 @@ const domains = {
 };
 
 const transformation = {
-  run: domain => {
+  run: (domain, origin) => {
     if (domain.isMatch(window.location.pathname)) {
       const anchors = document.querySelectorAll(domain.selector);
       [].forEach.call(anchors, a => {
@@ -122,24 +122,28 @@ const transformation = {
           chrome.runtime.sendMessage(message);
         });
       });
+      chrome.runtime.sendMessage({ 
+        action: 'loadComplete',
+        origin: origin
+      });
     }
   },
 };
 
-const load = () => {
+const load = origin => {
   domain = domains[window.location.hostname];
   if (domain) {
-    transformation.run(domain);
+    transformation.run(domain, origin);
   }
 };
 
 const actions = {
-  activated: () => load(),
-  updateComplete: () => load(),
+  activated: origin => load(origin),
+  updateComplete: origin => load(origin),
 };
 
 chrome.runtime.onMessage.addListener(request => {
   if (actions[request.action]) {
-    actions[request.action]();
+    actions[request.action](request.origin);
   }
 });

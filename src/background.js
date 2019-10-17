@@ -3,6 +3,11 @@
 const GA_ACCOUNT_KEY = '{GA_ACCOUNT_KEY}';
 const IS_PRODUCTION = false;
 
+const intervals = {
+  updated: null,
+  activated: null
+};
+
 // Standard Google Universal Analytics code. Replace - _AnalyticsCode with GA_ACCOUNT_KEY
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -25,17 +30,29 @@ const actions = {
    if (IS_PRODUCTION) {
      ga('send', 'event', message.action, message.url, message.source);
    }
+  },
+  loadComplete: message => {
+    clearInterval(intervals[message.origin]);
   }
 }
 
 chrome.tabs.onActivated.addListener(function(tab, changeInfo) {
-  chrome.tabs.sendMessage(tab.tabId, { action: 'activated' });
+  intervals.activated = setInterval(function() {
+    chrome.tabs.sendMessage(tab.tabId, {
+      action: 'activated',
+      origin: 'activated',
+    });
+  }, 500);
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   if(changeInfo.status == "complete"){
-    chrome.tabs.sendMessage(tabId, { action: 'updateComplete' });
-    setTimeout( function(){chrome.tabs.sendMessage(tabId, { action: 'updateComplete' }); }, 2000);
+    intervals.updated = setInterval(function() {
+      chrome.tabs.sendMessage(tabId, { 
+        action: 'updateComplete',
+        origin: 'updated'
+      });
+    }, 500);
   }
 });
 
