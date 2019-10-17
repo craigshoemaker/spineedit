@@ -12,8 +12,8 @@ const commonRules = {
     if (author.length > 0) {
       const colon = '%3A';
       const space = '%20';
-      const ampersand = '%40';
-      author = `cc${colon}${space}${ampersand}${author}`;
+      const atSign = '%40';
+      author = `cc${colon}${space}${atSign}${author}`;
     }
     return `${url}${author}`;
   },
