@@ -95,6 +95,7 @@ const domains = {
       // Add source GitHub issue URL
       { apply: url => url + encodeURI(`GitHub Issue: ` + window.location.href) },
 
+      // Remove base URL
       { apply: url => url.replace(/https?:\/\/?github.com/, '') },
     ],
   },
