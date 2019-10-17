@@ -32,6 +32,15 @@ When you attempt to edit an article:
 
 - When opening links from *github.com/issues* the *Content Source* link doesn't open in a new tab
 
+## Test plan
+
+- On *docs.microsoft.com*, open an article and click on the **Edit** button:
+  - [Create your first function using Visual Studio](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio)
+
+- On *github.com*, open links using left and right-clicks, then click on the **Content Source** link:
+  - [github.com/issues/assigned](https://github.com/issues/assigned)
+  - [github.com/MicrosoftDocs/azure-docs/issues](https://github.com/MicrosoftDocs/azure-docs/issues)
+
 ## Acknowledgements
 
 Created by [Craig Shoemaker](https://github.com/craigshoemaker) and [Frank Hu](https://github.com/frankhu-msft).
