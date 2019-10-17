@@ -3,6 +3,9 @@
 let domain;
 
 const LINE_BREAK = '%0A';
+const COLON = '%3A';
+const SPACE = '%20';
+const AT_SIGN = '%40';
 
 const commonRules = {
   addDescription: url => `${url}?description=`,
@@ -10,10 +13,7 @@ const commonRules = {
   addDivider: url => `${url}-------${LINE_BREAK}`,
   addAuthor: (url, author) => {
     if (author.length > 0) {
-      const colon = '%3A';
-      const space = '%20';
-      const atSign = '%40';
-      author = `cc${colon}${space}${atSign}${author}`;
+      author = `cc${COLON}${SPACE}${AT_SIGN}${author}`;
     }
     return `${url}${author}`;
   },
