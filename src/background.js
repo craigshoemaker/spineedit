@@ -25,8 +25,8 @@ const actions = {
         - action: Always equals 'log' in this function
         - url:    The public URL of the published article
         - source: Domain hostname, for example: 'docs.microsoft.com' or 'github.com'
-      };
     */
+    
    if (IS_PRODUCTION) {
      ga('send', 'event', message.action, message.url, message.source);
    }
