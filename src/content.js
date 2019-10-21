@@ -7,10 +7,17 @@ const COLON = '%3A';
 const SPACE = '%20';
 const AT_SIGN = '%40';
 
+const noop = () => {};
+
 const commonRules = {
   addDescription: url => `${url}?description=`,
   addLineBreak: url => `${url}${LINE_BREAK}`,
-  addDivider: url => `${url}-------${LINE_BREAK}`,
+  addDivider: url => {
+    if(!url) {
+      url = '';
+    }
+    return `${url}-------${LINE_BREAK}`
+  },
   addAuthor: (url, author) => {
     if (author.length > 0) {
       author = `cc${COLON}${SPACE}${AT_SIGN}${author}`;
@@ -25,13 +32,31 @@ const domains = {
     selector: `a[data-original_content_git_url]`,
     attribute: 'data-original_content_git_url',
     getPublicUrl: () => window.location.href,
-    getAuthor: () => {
-      let author = '';
-      const el = document.querySelector('meta[name="author"]');
+    getAuthor: function() {
+      return this.getMetaValue('author');
+    },
+    getAlias: function() {
+      return this.getMetaValue('ms.author');
+    },
+    getMetaValue: name => {
+      let value = '';
+      const el = document.querySelector(`meta[name="${name}"]`);
       if (el) {
-        author = el.getAttribute('content');
+        value = el.getAttribute('content');
       }
-      return author;
+      return value;
+    },
+    customize: function() {
+      const actionList = document.querySelector('.action-list');
+      const editListItem = document.querySelector('#contenteditbtn');
+      
+      if(actionList && editListItem) {
+        const emailAddress = `${this.getAlias()}@microsoft.com`;
+        const emailListItem = document.createElement('LI');
+        const title = document.querySelector('h1').innerText;
+        emailListItem.innerHTML = `<a href="mailto:${emailAddress}?subject=${title}&body=${LINE_BREAK}${LINE_BREAK}${commonRules.addDivider()}${this.getPublicUrl()}" class="button is-text has-inner-focus is-small is-icon-only-touch">Email Author</a>`;
+        actionList.insertBefore(emailListItem, editListItem);
+      }
     },
     rules: [
       // switch from the read-only view to the editor
@@ -69,6 +94,7 @@ const domains = {
       }
       return author;
     },
+    customize: noop,
     rules: [
       // The GitHub template sometimes doesn't do this replacement on the server
       // and other times it does, so handling the redirect here for stability
@@ -122,6 +148,7 @@ const transformation = {
           chrome.runtime.sendMessage(message);
         });
       });
+      domain.customize();
       chrome.runtime.sendMessage({ 
         action: 'loadComplete',
         origin: origin
