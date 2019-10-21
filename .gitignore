@@ -15,3 +15,5 @@ testing
 *.pem
 
 ga-config.js
+
+scratch.js
