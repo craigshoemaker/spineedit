@@ -131,10 +131,19 @@ const transformation = {
 };
 
 const load = origin => {
-  domain = domains[window.location.hostname];
-  if (domain) {
-    transformation.run(domain, origin);
+  const body = document.querySelector('body');
+  const attribute = 'data-spineedit';
+  const isProcessed = body.getAttribute(attribute);
+
+  if(!isProcessed){
+    domain = domains[window.location.hostname];
+    body.setAttribute(attribute, 'true');
+    if (domain) {
+      document.querySelector('body').setAttribute
+      transformation.run(domain, origin);
+    }
   }
+
 };
 
 const actions = {
