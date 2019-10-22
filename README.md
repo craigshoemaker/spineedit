@@ -34,8 +34,9 @@ When you attempt to edit an article:
 
 ## Test plan
 
-- On *docs.microsoft.com*, open an article and click on the **Edit** button:
-  - [Create your first function using Visual Studio](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio)
+- Open an [article](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio) on *docs.microsoft.com*:
+  - Click on the **Edit** button
+  - Click on the **Email Author**  button
 
 - On *github.com*, open links using left and right-clicks, then click on the **Content Source** link:
   - [github.com/issues/assigned](https://github.com/issues/assigned)
