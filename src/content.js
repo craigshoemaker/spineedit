@@ -49,9 +49,10 @@ const domains = {
     customize: function() {
       const body = document.querySelector('body');
       const attribute = 'data-spineedit';
-      const isProcessed = body.getAttribute(attribute);
+      const isProcessed = !!body.getAttribute(attribute);
 
       if (!isProcessed) {
+        body.setAttribute(attribute, true);
         const actionList = document.querySelector('.action-list');
         const editListItem = document.querySelector('#contenteditbtn');
         
