@@ -135,7 +135,7 @@ const domains = {
 };
 
 const transformation = {
-  run: (domain, origin) => {
+  run: (domain, request) => {
     if (domain.isMatch(window.location.pathname)) {
       const anchors = document.querySelectorAll(domain.selector);
       [].forEach.call(anchors, a => {
@@ -156,28 +156,28 @@ const transformation = {
         });
       });
       domain.customize();
-      chrome.runtime.sendMessage({ 
+      chrome.runtime.sendMessage({
         action: 'loadComplete',
-        origin: origin
+        id: request.id,
       });
     }
   },
 };
 
-const load = origin => {
+const load = request => {
   domain = domains[window.location.hostname];
   if (domain) {
-    transformation.run(domain, origin);
+    transformation.run(domain, request);
   }
 };
 
 const actions = {
-  activated: origin => load(origin),
-  updateComplete: origin => load(origin),
+  activated: request => load(request),
+  updateComplete: request => load(request),
 };
 
 chrome.runtime.onMessage.addListener(request => {
   if (actions[request.action]) {
-    actions[request.action](request.origin);
+    actions[request.action](request);
   }
 });

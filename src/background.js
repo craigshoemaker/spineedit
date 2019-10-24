@@ -3,10 +3,9 @@
 const GA_ACCOUNT_KEY = '{GA_ACCOUNT_KEY}';
 const IS_PRODUCTION = false;
 
-const intervals = {
-  updated: null,
-  activated: null
-};
+const intervals = {};
+
+const getIntervalId = () => Math.floor(Math.random() * 10000) + 1;
 
 // Standard Google Universal Analytics code. Replace - _AnalyticsCode with GA_ACCOUNT_KEY
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -32,25 +31,28 @@ const actions = {
    }
   },
   loadComplete: message => {
-    clearInterval(intervals[message.origin]);
+    clearInterval(intervals[message.id]);
   }
 }
 
 chrome.tabs.onActivated.addListener(function(tab, changeInfo) {
-  intervals.activated = setInterval(function() {
+  const id = getIntervalId();
+  intervals[id] = setInterval(function() {
     chrome.tabs.sendMessage(tab.tabId, {
       action: 'activated',
       origin: 'activated',
+      id: id
     });
   }, 500);
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   if(changeInfo.status == "complete"){
-    intervals.updated = setInterval(function() {
+    const id = getIntervalId();
+    intervals[id] = setInterval(function() {
       chrome.tabs.sendMessage(tabId, { 
         action: 'updateComplete',
-        origin: 'updated'
+        id: id
       });
     }, 500);
   }
