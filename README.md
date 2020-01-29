@@ -8,7 +8,7 @@ A browser extension that fosters collaboration and makes it easy to edit Microso
 
 When working with Microsoft docs in the browser, you can open an editor in the private repository for quick edits and collaboration.
 
-[![Video thumbnail](images\video-thumb.png)](https://youtu.be/7yHEUnbjJHc)
+[![Video thumbnail](images/video-thumb.png)](https://youtu.be/7yHEUnbjJHc)
 
 ## Installation
 
@@ -20,7 +20,7 @@ After installation of the chrome extension, you will be ableto easily email the 
 
 | Website | Click on the... | |
 |---------|-----------------| --- |
-| docs.microsoft.com | *Email Author* button | ![Example: Click the Email Author button to open the editor](images\440x280-email-author.png)|
+| docs.microsoft.com | *Email Author* button | ![Example: Click the Email Author button to open the editor](images/440x280-email-author.png)|
 
 > **NOTE** Workflows below only work if you have access to the destination repository.
 
@@ -31,8 +31,8 @@ When you attempt to edit an article:
 
 | Website | Click on the... | |
 |---------|-----------------| --- |
-| docs.microsoft.com | *Edit* button | ![Example: Click the edit button to open the editor](images\440x280.png)|
-| github.com | _Content Source_ link in an article issue | ![Example: Click the Content Source link to open the editor](images\440x280-github.png)|
+| docs.microsoft.com | *Edit* button | ![Example: Click the edit button to open the editor](images/440x280.png)|
+| github.com | _Content Source_ link in an article issue | ![Example: Click the Content Source link to open the editor](images/440x280-github.png)|
 
 ## Known issues
 
