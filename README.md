@@ -16,7 +16,7 @@ Install via the [Google web store](https://chrome.google.com/webstore/detail/spi
 
 ## Usage
 
-After installation of the chrome extension, you will be ableto easily email the author of an Azure Document by clicking the Email Author button per below. 
+After installation of the chrome extension, you will be able to easily email the author of an Azure Document by clicking the Email Author button per below. 
 
 | Website | Click on the... | |
 |---------|-----------------| --- |
