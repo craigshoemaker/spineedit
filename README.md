@@ -1,6 +1,6 @@
 <a name="introduction"></a>
 
-![SpineEdit](images\spineedit-logo.png)
+![SpineEdit](images/spineedit-logo.png)
 
 A browser extension that fosters collaboration and makes it easy to edit Microsoft docs.
 
