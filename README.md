@@ -16,6 +16,9 @@ Install via the [Google web store](https://chrome.google.com/webstore/detail/spi
 
 ## Usage
 
+After installation of the chrome extension, you will be ableto easily email the author of an Azure Document by clicking the Email Author button per below. 
+
+
 > **NOTE** Workflows only works if you have access to the destination repository.
 
 When you attempt to edit an article:
