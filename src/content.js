@@ -1,6 +1,6 @@
 'use strict';
 
-let domain;
+let webProperty;
 
 const LINE_BREAK = '%0A';
 const COLON = '%3A';
@@ -26,8 +26,48 @@ const commonRules = {
   },
 };
 
-const domains = {
-  'docs.microsoft.com': {
+const getWebPropertyKey = (url, hostname) => {
+  let returnValue = '';
+
+  if(hostname === 'github.com') {
+      returnValue = 'github';
+  } else if(hostname === 'docs.microsoft.com') {
+      if(/\/learn\//.test(url)) {
+          returnValue = 'learn';
+      } else {
+          returnValue = 'docs';
+      }
+  }
+
+  return returnValue;
+};
+
+const webProperties = {
+
+  commonCustomizations: {
+    updateExistingLink: webProperty => {
+      const anchors = document.querySelectorAll(webProperty.selector);
+      [].forEach.call(anchors, a => {
+        const author = webProperty.getAuthor();
+        let url = a.getAttribute(webProperty.attribute);
+        webProperty.rules.forEach(rule => {
+          url = rule.apply(url, author);
+        });
+        a.setAttribute('href', url);
+        a.setAttribute('target', '_blank');
+        a.addEventListener('click', e => {
+          const message = {
+            action: 'log',
+            url: webProperty.getPublicUrl(),
+            source: window.location.hostname,
+          };
+          chrome.runtime.sendMessage(message);
+        });
+      });
+    }
+  },
+
+  docs: {
     isMatch: () => true,
     selector: `a[data-original_content_git_url]`,
     attribute: 'data-original_content_git_url',
@@ -47,6 +87,7 @@ const domains = {
       return value;
     },
     customize: function() {
+      webProperties.commonCustomizations.updateExistingLink(webProperties.docs);
       const body = document.querySelector('body');
       const attribute = 'data-spineedit';
       const isProcessed = !!body.getAttribute(attribute);
@@ -80,7 +121,29 @@ const domains = {
     ],
   },
 
-  'github.com': {
+  learn: {
+    isMatch: () => true,
+    selector: `meta [name="original_ref_skeleton_git_url"]`,
+    attribute: 'content',
+    getPublicUrl: () => window.location.href,
+    getAuthor: noop,
+    getAlias: noop,
+    getMetaValue: name => name,
+    customize: function() {
+      const body = document.querySelector('body');
+      const attribute = 'data-spineedit';
+      const isProcessed = !!body.getAttribute(attribute);
+
+      if (!isProcessed) {
+        // todo
+      }
+    },
+    rules: [
+      { apply: url => url },
+    ],
+  },
+
+  github: {
     isMatch: pathname => /MicrosoftDocs/.test(pathname),
     selector: 'a[href^="https://github.com/Microsoft"][href*="/blob/"]',
     attribute: 'href',
@@ -101,7 +164,7 @@ const domains = {
       }
       return author;
     },
-    customize: noop,
+    customize: () => webProperties.commonCustomizations.updateExistingLink(webProperties.github),
     rules: [
       // The GitHub template sometimes doesn't do this replacement on the server
       // and other times it does, so handling the redirect here for stability
@@ -135,27 +198,9 @@ const domains = {
 };
 
 const transformation = {
-  run: (domain, request) => {
-    if (domain.isMatch(window.location.pathname)) {
-      const anchors = document.querySelectorAll(domain.selector);
-      [].forEach.call(anchors, a => {
-        const author = domain.getAuthor();
-        let url = a.getAttribute(domain.attribute);
-        domain.rules.forEach(rule => {
-          url = rule.apply(url, author);
-        });
-        a.setAttribute('href', url);
-        a.setAttribute('target', '_blank');
-        a.addEventListener('click', e => {
-          const message = {
-            action: 'log',
-            url: domain.getPublicUrl(),
-            source: window.location.hostname,
-          };
-          chrome.runtime.sendMessage(message);
-        });
-      });
-      domain.customize();
+  run: (webProperty, request) => {
+    if (webProperty.isMatch(window.location.pathname)) {
+      webProperty.customize();
       chrome.runtime.sendMessage({
         action: 'loadComplete',
         id: request.id,
@@ -165,9 +210,10 @@ const transformation = {
 };
 
 const load = request => {
-  domain = domains[window.location.hostname];
-  if (domain) {
-    transformation.run(domain, request);
+  const key = getWebPropertyKey(window.location.href, window.location.hostname);
+  webProperty = webProperties[key];
+  if (webProperty) {
+    transformation.run(webProperty, request);
   }
 };
 
