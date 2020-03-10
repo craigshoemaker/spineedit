@@ -53,3 +53,10 @@ When you attempt to edit an article:
 Created by [Craig Shoemaker](https://github.com/craigshoemaker) and [Frank Hu](https://github.com/frankhu-msft).
 
 Thanks to [Erika Doyle](https://github.com/erikadoyle) and [John Papa](https://github.com/johnpapa) for feedback and suggestions.
+
+## Developer Notes
+
+- `extension.html` - shows up when you click the extension button
+- `manifest.json` - the extension how to behave
+- `background.js` - interacts with the browser
+- `content.js` - is the content script that can inspect the content on the current web page
