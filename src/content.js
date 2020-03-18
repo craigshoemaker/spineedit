@@ -1,4 +1,3 @@
-// @ts-check
 'use strict';
 
 let webProperty;
@@ -8,16 +7,14 @@ const COLON = '%3A';
 const SPACE = '%20';
 const AT_SIGN = '%40';
 
-const noop = () => {};
-
 const commonRules = {
   addDescription: url => `${url}?description=`,
   addLineBreak: url => `${url}${LINE_BREAK}`,
   addDivider: url => {
-    if(!url) {
+    if (!url) {
       url = '';
     }
-    return `${url}-------${LINE_BREAK}`
+    return `${url}-------${LINE_BREAK}`;
   },
   addAuthor: (url, author) => {
     if (author.length > 0) {
@@ -30,21 +27,20 @@ const commonRules = {
 const getWebPropertyKey = (url, hostname) => {
   let returnValue = '';
 
-  if(hostname === 'github.com') {
-      returnValue = 'github';
-  } else if(hostname === 'docs.microsoft.com') {
-      if(/\/learn\//.test(url)) {
-          returnValue = 'learn';
-      } else {
-          returnValue = 'docs';
-      }
+  if (hostname === 'github.com') {
+    returnValue = 'github';
+  } else if (hostname === 'docs.microsoft.com') {
+    if (/\/learn\//.test(url)) {
+      returnValue = 'learn';
+    } else {
+      returnValue = 'docs';
+    }
   }
 
   return returnValue;
 };
 
 const webProperties = {
-
   commonCustomizations: {
     updateExistingLink: webProperty => {
       const anchors = document.querySelectorAll(webProperty.selector);
@@ -56,7 +52,7 @@ const webProperties = {
         });
         a.setAttribute('href', url);
         a.setAttribute('target', '_blank');
-        a.addEventListener('click', e => {
+        a.addEventListener('click', (/* e */) => {
           const message = {
             action: 'log',
             url: webProperty.getPublicUrl(),
@@ -65,7 +61,7 @@ const webProperties = {
           chrome.runtime.sendMessage(message);
         });
       });
-    }
+    },
   },
 
   docs: {
@@ -97,8 +93,8 @@ const webProperties = {
         body.setAttribute(attribute, true);
         const actionList = document.querySelector('.action-list');
         const editListItem = document.querySelector('#contenteditbtn');
-        
-        if(actionList && editListItem) {
+
+        if (actionList && editListItem) {
           const emailAddress = `${this.getAlias()}@microsoft.com`;
           const emailListItem = document.createElement('LI');
           const title = document.querySelector('h1').innerText;
@@ -126,7 +122,7 @@ const webProperties = {
     getUrl: gitHubUrl => {
       let value = gitHubUrl.replace(/\/blob\//, '/edit/');
       value = value.replace(/\/live\//, '/master/');
-      if (!/index\.yml/.test(gitHubUrl)){
+      if (!/index\.yml/.test(gitHubUrl)) {
         value = value.replace(/(.*\/)(.*)\.yml/, '$1includes/$2.md');
       }
       return value;
@@ -155,12 +151,12 @@ const webProperties = {
       const isProcessed = !!body.getAttribute(attribute);
 
       if (!isProcessed) {
-        body.setAttribute(attribute, true);
+        body.setAttribute(attribute, 'true');
         const actionList = document.querySelector('.action-list');
         const firstLI = document.querySelector('ul.action-list:first-child li');
         const listButton = firstLI.querySelector('button');
-        
-        if(actionList && firstLI) {
+
+        if (actionList && firstLI) {
           const editListItem = document.createElement('LI');
           const editButton = document.createElement('A');
           editButton.setAttribute('class', listButton.getAttribute('class'));
@@ -176,9 +172,7 @@ const webProperties = {
         }
       }
     },
-    rules: [
-      { apply: url => url },
-    ],
+    rules: [{ apply: url => url }],
   },
 
   github: {

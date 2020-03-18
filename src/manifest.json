@@ -10,7 +10,7 @@
     "128": "/icons/icon128.png"
   },
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["background/ga.js", "background/listeners.js"],
     "persistent": false
   },
   "browser_action": {
@@ -25,7 +25,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://docs.microsoft.com/*", 
+        "https://docs.microsoft.com/*",
         "http://docs.microsoft.com/*",
         "http://github.com/MicrosoftDocs/*",
         "https://github.com/MicrosoftDocs/*",
