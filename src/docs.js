@@ -1,10 +1,7 @@
 // @ts-check
-
 'use strict';
 
-window['webProperties'] = window['webProperties'] || {};
-
-window['webProperties'].docs = {
+webProperties.docs = {
     isMatch: () => true,
     selector: `a[data-original_content_git_url]`,
     attribute: 'data-original_content_git_url',

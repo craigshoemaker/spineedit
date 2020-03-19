@@ -8,7 +8,8 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly",
     "ga": "readonly",
-    "chrome": "readonly"
+    "chrome": "readonly",
+    "webProperties": "writable"
   },
   "parserOptions": {
     "ecmaVersion": 2018,

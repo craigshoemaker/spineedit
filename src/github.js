@@ -1,10 +1,7 @@
 // @ts-check
-
 'use strict';
 
-window['webProperties'] = window['webProperties'] || {};
-
-window['webProperties'].github = {
+webProperties.github = {
     isMatch: pathname => /MicrosoftDocs/.test(pathname),
     selector: 'a[href^="https://github.com/Microsoft"][href*="/blob/"]',
     attribute: 'href',

@@ -40,8 +40,9 @@ const getWebPropertyKey = (url, hostname) => {
   return returnValue;
 };
 
-window['webProperties'] = window['webProperties'] || {};
-window['webProperties'].commonCustomizations = {
+window.webProperties = window['webProperties'] || {};
+
+webProperties.commonCustomizations = {
     updateExistingLink: webProperty => {
       const anchors = document.querySelectorAll(webProperty.selector);
       [].forEach.call(anchors, a => {

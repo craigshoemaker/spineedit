@@ -1,10 +1,7 @@
 // @ts-check
-
 'use strict';
 
-window['webProperties'] = window['webProperties'] || {};
-
-window['webProperties'].learn = {
+webProperties.learn = {
     isMatch: () => true,
     selector: `meta[name="original_ref_skeleton_git_url"]`,
     attribute: 'content',
