@@ -22,12 +22,12 @@ gulp.task('minify', async () => {
 });
 
 gulp.task('copy', async () => {
-  gulp
-    .src(['src/*.json', 'src/*.html', 'src/icons/*'])
-    .pipe(gulp.dest(file => {
+  gulp.src(['src/*.json', 'src/*.html', 'src/icons/*']).pipe(
+    gulp.dest(file => {
       const dirname = path.dirname(file.path);
       return dirname.replace('src', 'dist');
-  }));
+    }),
+  );
 });
 
 gulp.task('build', gulp.parallel('minify', 'copy'));

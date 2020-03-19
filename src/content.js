@@ -43,26 +43,26 @@ const getWebPropertyKey = (url, hostname) => {
 window.webProperties = window['webProperties'] || {};
 
 webProperties.commonCustomizations = {
-    updateExistingLink: webProperty => {
-      const anchors = document.querySelectorAll(webProperty.selector);
-      [].forEach.call(anchors, a => {
-        const author = webProperty.getAuthor();
-        let url = a.getAttribute(webProperty.attribute);
-        webProperty.rules.forEach(rule => {
-          url = rule.apply(url, author);
-        });
-        a.setAttribute('href', url);
-        a.setAttribute('target', '_blank');
-        a.addEventListener('click', (/* e */) => {
-          const message = {
-            action: 'log',
-            url: webProperty.getPublicUrl(),
-            source: window.location.hostname,
-          };
-          chrome.runtime.sendMessage(message);
-        });
+  updateExistingLink: webProperty => {
+    const anchors = document.querySelectorAll(webProperty.selector);
+    [].forEach.call(anchors, a => {
+      const author = webProperty.getAuthor();
+      let url = a.getAttribute(webProperty.attribute);
+      webProperty.rules.forEach(rule => {
+        url = rule.apply(url, author);
       });
-    }
+      a.setAttribute('href', url);
+      a.setAttribute('target', '_blank');
+      a.addEventListener('click', (/* e */) => {
+        const message = {
+          action: 'log',
+          url: webProperty.getPublicUrl(),
+          source: window.location.hostname,
+        };
+        chrome.runtime.sendMessage(message);
+      });
+    });
+  },
 };
 
 const transformation = {
