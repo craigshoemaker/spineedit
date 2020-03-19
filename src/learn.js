@@ -16,45 +16,6 @@ webProperties.learn = {
  * Everything below is the details
  */
 
-function getRules() {
-  return [
-    // switch to edit mode
-    { apply: url => url.replace(/\/blob\//, '/edit/') },
-
-    // switch to master branch
-    { apply: url => url.replace(/\/live\//, '/master/') },
-
-    // switch to markdown for unit files
-    {
-      apply: url => {
-        if (!/index\.yml/.test(url)) {
-          url = url.replace(/(.*\/)(.*)\.yml/, '$1includes/$2.md');
-        }
-        return url;
-      },
-    },
-  ];
-}
-
-function getMetaValue(name) {
-  let value = '';
-  const el = document.querySelector(`meta[name="${name}"]`);
-  if (el) {
-    value = el.getAttribute('content');
-  }
-  return value;
-}
-
-function getPublicUrl() {
-  return window.location.href;
-}
-function getAuthor() {
-  return getMetaValue('author');
-}
-function getAlias() {
-  return getMetaValue('ms.author');
-}
-
 function customize() {
   const body = document.querySelector('body');
   const attribute = 'data-spineedit';
@@ -84,4 +45,45 @@ function customize() {
       actionList.insertBefore(editListItem, firstLI);
     }
   }
+}
+
+function getAlias() {
+  return getMetaValue('ms.author');
+}
+
+function getAuthor() {
+  return getMetaValue('author');
+}
+
+function getMetaValue(name) {
+  let value = '';
+  const el = document.querySelector(`meta[name="${name}"]`);
+  if (el) {
+    value = el.getAttribute('content');
+  }
+  return value;
+}
+
+function getPublicUrl() {
+  return window.location.href;
+}
+
+function getRules() {
+  return [
+    // switch to edit mode
+    { apply: url => url.replace(/\/blob\//, '/edit/') },
+
+    // switch to master branch
+    { apply: url => url.replace(/\/live\//, '/master/') },
+
+    // switch to markdown for unit files
+    {
+      apply: url => {
+        if (!/index\.yml/.test(url)) {
+          url = url.replace(/(.*\/)(.*)\.yml/, '$1includes/$2.md');
+        }
+        return url;
+      },
+    },
+  ];
 }

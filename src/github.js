@@ -1,28 +1,23 @@
 'use strict';
 
 webProperties.github = {
-  isMatch: pathname => /MicrosoftDocs/.test(pathname),
-  selector: 'a[href^="https://github.com/Microsoft"][href*="/blob/"]',
   attribute: 'href',
-  getPublicUrl: () => {
-    let url = '';
-    const a = document.querySelector('a[href^="https://docs.microsoft.com"]');
-    if (a) {
-      url = a.getAttribute('href');
-    }
-    return url;
-  },
-  getAuthor: () => {
-    let author = '';
-    const el = document.querySelector('.user-mention');
-    if (el) {
-      author = el['innerText'];
-      author = author.replace('@', '');
-    }
-    return author;
-  },
-  customize: () => webProperties.commonCustomizations.updateExistingLink(webProperties.github),
-  rules: [
+  rules: getRules(),
+  selector: 'a[href^="https://github.com/Microsoft"][href*="/blob/"]',
+  customize,
+  //getAlias,
+  getAuthor,
+  //getMetaValue,
+  getPublicUrl,
+  isMatch,
+};
+
+/**
+ * Everything below is the details
+ */
+
+function getRules() {
+  return [
     // The GitHub template sometimes doesn't do this replacement on the server
     // and other times it does, so handling the redirect here for stability
     { apply: url => url.replace('/github.com/Microsoft/', '/github.com/MicrosoftDocs/') },
@@ -50,5 +45,32 @@ webProperties.github = {
 
     // Remove base URL
     { apply: url => url.replace(/https?:\/\/?github.com/, '') },
-  ],
-};
+  ];
+}
+
+function customize() {
+  return webProperties.commonCustomizations.updateExistingLink(webProperties.github);
+}
+
+function getAuthor() {
+  let author = '';
+  const el = document.querySelector('.user-mention');
+  if (el) {
+    author = el['innerText'];
+    author = author.replace('@', '');
+  }
+  return author;
+}
+
+function getPublicUrl() {
+  let url = '';
+  const a = document.querySelector('a[href^="https://docs.microsoft.com"]');
+  if (a) {
+    url = a.getAttribute('href');
+  }
+  return url;
+}
+
+function isMatch(pathname) {
+  return /MicrosoftDocs/.test(pathname);
+}

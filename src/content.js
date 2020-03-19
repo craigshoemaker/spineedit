@@ -1,6 +1,7 @@
 'use strict';
 
 window.webProperties = window['webProperties'] || {};
+
 let webProperty;
 
 window.spineEdit = {
@@ -48,6 +49,7 @@ window.webProperties.commonCustomizations = {
   updateExistingLink: webProperty => {
     const anchors = document.querySelectorAll(webProperty.selector);
     [].forEach.call(anchors, a => {
+      // [].forEach.call is a way of being able to iterate over the NodeList (anchors)
       const author = webProperty.getAuthor();
       let url = a.getAttribute(webProperty.attribute);
       webProperty.rules.forEach(rule => {
@@ -88,6 +90,7 @@ const load = request => {
 };
 
 const actions = {
+  // activated: request => load(request),
   activated: request => load(request),
   updateComplete: request => load(request),
 };
