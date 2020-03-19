@@ -32,7 +32,12 @@
         "http://github.com/issues/*",
         "https://github.com/issues/*"
       ],
-      "js": ["content.js"],
+      "js": [
+        "content.js",
+        "docs.js",
+        "github.js",
+        "learn.js"
+      ],
       "run_at": "document_idle",
       "all_frames": false,
       "match_about_blank": false
