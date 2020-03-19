@@ -1,53 +1,23 @@
 'use strict';
 
 webProperties.learn = {
-  isMatch: () => true,
-  selector: `meta[name="original_ref_skeleton_git_url"]`,
   attribute: 'content',
-  getPublicUrl: () => window.location.href,
-  getAuthor: () => this.getMetaValue('author'),
-  getAlias: () => this.getMetaValue('ms.author'),
-  getMetaValue: name => {
-    let value = '';
-    const el = document.querySelector(`meta[name="${name}"]`);
-    if (el) {
-      value = el.getAttribute('content');
-    }
-    return value;
-  },
-  customize: () => {
-    const body = document.querySelector('body');
-    const attribute = 'data-spineedit';
-    const isProcessed = !!body.getAttribute(attribute);
+  rules: getRules(),
+  selector: `meta[name="original_ref_skeleton_git_url"]`,
+  customize,
+  getAlias,
+  getAuthor,
+  getMetaValue,
+  getPublicUrl,
+  isMatch: () => true,
+};
 
-    if (!isProcessed) {
-      body.setAttribute(attribute, 'true');
-      const actionList = document.querySelector('.action-list');
-      const firstLI = document.querySelector('ul.action-list:first-child li');
-      const listButton = firstLI.querySelector('button');
+/**
+ * Everything below is the details
+ */
 
-      if (actionList && firstLI) {
-        const editListItem = document.createElement('LI');
-        const editButton = document.createElement('A');
-        editButton.setAttribute('class', listButton.getAttribute('class'));
-        editButton.innerText = 'Edit';
-
-        const gitHubUrlMeta = document.querySelector(webProperties.learn.selector);
-        const gitHubUrl = gitHubUrlMeta.getAttribute(webProperties.learn.attribute);
-
-        let url = gitHubUrl;
-        webProperties.learn.rules.forEach(rule => {
-          url = rule.apply(url);
-        });
-
-        editButton.setAttribute('href', url);
-        editButton.setAttribute('target', '_blank');
-        editListItem.appendChild(editButton);
-        actionList.insertBefore(editListItem, firstLI);
-      }
-    }
-  },
-  rules: [
+function getRules() {
+  return [
     // switch to edit mode
     { apply: url => url.replace(/\/blob\//, '/edit/') },
 
@@ -63,5 +33,55 @@ webProperties.learn = {
         return url;
       },
     },
-  ],
-};
+  ];
+}
+
+function getMetaValue(name) {
+  let value = '';
+  const el = document.querySelector(`meta[name="${name}"]`);
+  if (el) {
+    value = el.getAttribute('content');
+  }
+  return value;
+}
+
+function getPublicUrl() {
+  return window.location.href;
+}
+function getAuthor() {
+  return getMetaValue('author');
+}
+function getAlias() {
+  return getMetaValue('ms.author');
+}
+
+function customize() {
+  const body = document.querySelector('body');
+  const attribute = 'data-spineedit';
+  const isProcessed = !!body.getAttribute(attribute);
+
+  if (!isProcessed) {
+    body.setAttribute(attribute, 'true');
+    const actionList = document.querySelector('.action-list');
+    const firstLI = document.querySelector('ul.action-list:first-child li');
+    const listButton = firstLI.querySelector('button');
+
+    if (actionList && firstLI) {
+      const editListItem = document.createElement('LI');
+      const editButton = document.createElement('A');
+      editButton.setAttribute('class', listButton.getAttribute('class'));
+      editButton.innerText = 'Edit';
+
+      const gitHubUrlMeta = document.querySelector(webProperties.learn.selector);
+      const gitHubUrl = gitHubUrlMeta.getAttribute(webProperties.learn.attribute);
+
+      let url = gitHubUrl;
+      webProperties.learn.rules.forEach(rule => (url = rule.apply(url)));
+
+      editButton.setAttribute('href', url);
+      editButton.setAttribute('target', '_blank');
+      editListItem.appendChild(editButton);
+      actionList.insertBefore(editListItem, firstLI);
+    }
+  }
+}

@@ -1,15 +1,16 @@
 'use strict';
 
+window.webProperties = window['webProperties'] || {};
 let webProperty;
 
-spineEdit = {
+window.spineEdit = {
   LINE_BREAK: '%0A',
   COLON: '%3A',
   SPACE: '%20',
   AT_SIGN: '%40',
 };
 
-commonRules = {
+window.commonRules = {
   addDescription: url => `${url}?description=`,
   addLineBreak: url => `${url}${spineEdit.LINE_BREAK}`,
   addDivider: url => {
@@ -43,9 +44,7 @@ const getWebPropertyKey = (url, hostname) => {
   return returnValue;
 };
 
-webProperties = window['webProperties'] || {};
-
-webProperties.commonCustomizations = {
+window.webProperties.commonCustomizations = {
   updateExistingLink: webProperty => {
     const anchors = document.querySelectorAll(webProperty.selector);
     [].forEach.call(anchors, a => {
