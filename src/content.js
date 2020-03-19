@@ -2,21 +2,24 @@
 
 let webProperty;
 
-const LINE_BREAK = '%0A';
-const COLON = '%3A';
-const SPACE = '%20';
-const AT_SIGN = '%40';
+spineEdit = {
+  LINE_BREAK: '%0A',
+  COLON: '%3A',
+  SPACE: '%20',
+  AT_SIGN: '%40',
+};
 
-const commonRules = {
+commonRules = {
   addDescription: url => `${url}?description=`,
-  addLineBreak: url => `${url}${LINE_BREAK}`,
+  addLineBreak: url => `${url}${spineEdit.LINE_BREAK}`,
   addDivider: url => {
     if (!url) {
       url = '';
     }
-    return `${url}-------${LINE_BREAK}`;
+    return `${url}-------${spineEdit.LINE_BREAK}`;
   },
   addAuthor: (url, author) => {
+    const { COLON, SPACE, AT_SIGN } = spineEdit;
     if (author.length > 0) {
       author = `cc${COLON}${SPACE}${AT_SIGN}${author}`;
     }
@@ -40,7 +43,7 @@ const getWebPropertyKey = (url, hostname) => {
   return returnValue;
 };
 
-window.webProperties = window['webProperties'] || {};
+webProperties = window['webProperties'] || {};
 
 webProperties.commonCustomizations = {
   updateExistingLink: webProperty => {

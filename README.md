@@ -16,11 +16,11 @@ Install via the [Google web store](https://chrome.google.com/webstore/detail/spi
 
 ## Usage
 
-After installation of the chrome extension, you will be able to easily email the author of an Azure Document by clicking the Email Author button per below. 
+After installation of the chrome extension, you will be able to easily email the author of an Azure Document by clicking the Email Author button per below.
 
-| Website | Click on the... | |
-|---------|-----------------| --- |
-| docs.microsoft.com | *Email Author* button | ![Example: Click the Email Author button to open the editor](images/440x280-email-author.png)|
+| Website            | Click on the...       |                                                                                               |
+| ------------------ | --------------------- | --------------------------------------------------------------------------------------------- |
+| docs.microsoft.com | _Email Author_ button | ![Example: Click the Email Author button to open the editor](images/440x280-email-author.png) |
 
 > **NOTE** Workflows below only work if you have access to the destination repository.
 
@@ -29,22 +29,23 @@ When you attempt to edit an article:
 1. GitHub's page editor is opened
 1. The commit description is pre-populated with the article author's GitHub username
 
-| Website | Click on the... | |
-|---------|-----------------| --- |
-| docs.microsoft.com | *Edit* button | ![Example: Click the edit button to open the editor](images/440x280.png)|
-| github.com | _Content Source_ link in an article issue | ![Example: Click the Content Source link to open the editor](images/440x280-github.png)|
+| Website            | Click on the...                           |                                                                                         |
+| ------------------ | ----------------------------------------- | --------------------------------------------------------------------------------------- |
+| docs.microsoft.com | _Edit_ button                             | ![Example: Click the edit button to open the editor](images/440x280.png)                |
+| github.com         | _Content Source_ link in an article issue | ![Example: Click the Content Source link to open the editor](images/440x280-github.png) |
 
 ## Known issues
 
-- When opening links from *github.com/issues* the *Content Source* link doesn't open in a new tab
+- When opening links from _github.com/issues_ the _Content Source_ link doesn't open in a new tab
 
 ## Test plan
 
-- Open an [article](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio) on *docs.microsoft.com*:
-  - Click on the **Edit** button
-  - Click on the **Email Author**  button
+- Open an [article](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio) on _docs.microsoft.com_:
 
-- On *github.com*, open links using left and right-clicks, then click on the **Content Source** link:
+  - Click on the **Edit** button
+  - Click on the **Email Author** button
+
+- On _github.com_, open links using left and right-clicks, then click on the **Content Source** link:
   - [github.com/issues/assigned](https://github.com/issues/assigned)
   - [github.com/MicrosoftDocs/azure-docs/issues](https://github.com/MicrosoftDocs/azure-docs/issues)
 

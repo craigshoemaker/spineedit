@@ -9,7 +9,9 @@
     "SharedArrayBuffer": "readonly",
     "ga": "readonly",
     "chrome": "readonly",
-    "webProperties": "writable"
+    "webProperties": "writable",
+    "commonRules": "writable",
+    "spineEdit": "writable"
   },
   "parserOptions": {
     "ecmaVersion": 2018,

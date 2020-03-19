@@ -1,4 +1,3 @@
-// @ts-check
 'use strict';
 
 webProperties.learn = {
@@ -6,12 +5,8 @@ webProperties.learn = {
   selector: `meta[name="original_ref_skeleton_git_url"]`,
   attribute: 'content',
   getPublicUrl: () => window.location.href,
-  getAuthor: function() {
-    return this.getMetaValue('author');
-  },
-  getAlias: function() {
-    return this.getMetaValue('ms.author');
-  },
+  getAuthor: () => this.getMetaValue('author'),
+  getAlias: () => this.getMetaValue('ms.author'),
   getMetaValue: name => {
     let value = '';
     const el = document.querySelector(`meta[name="${name}"]`);
@@ -20,7 +15,7 @@ webProperties.learn = {
     }
     return value;
   },
-  customize: function() {
+  customize: () => {
     const body = document.querySelector('body');
     const attribute = 'data-spineedit';
     const isProcessed = !!body.getAttribute(attribute);

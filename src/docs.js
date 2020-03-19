@@ -1,4 +1,3 @@
-// @ts-check
 'use strict';
 
 webProperties.docs = {
@@ -35,11 +34,16 @@ webProperties.docs = {
         const emailAddress = `${this.getAlias()}@microsoft.com`;
         const emailListItem = document.createElement('LI');
         const title = document.querySelector('h1').innerText;
-        emailListItem.innerHTML = `<a href="mailto:${emailAddress}?subject=${title}&body=${LINE_BREAK}${LINE_BREAK}${commonRules.addDivider()}${this.getPublicUrl()}" class="button is-text has-inner-focus is-small is-icon-only-touch">Email Author</a>`;
+        emailListItem.innerHTML = `<a href="mailto:${emailAddress}?subject=${title}&body=${
+          spineEdit.LINE_BREAK
+        }${
+          spineEdit.LINE_BREAK
+        }${commonRules.addDivider()}${this.getPublicUrl()}" class="button is-text has-inner-focus is-small is-icon-only-touch">Email Author</a>`;
         actionList.insertBefore(emailListItem, editListItem);
       }
     }
   },
+
   rules: [
     // switch from the read-only view to the editor
     { apply: url => url.replace('/blob/', '/edit/') },

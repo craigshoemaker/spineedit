@@ -1,4 +1,3 @@
-// @ts-check
 'use strict';
 
 webProperties.github = {
@@ -17,7 +16,7 @@ webProperties.github = {
     let author = '';
     const el = document.querySelector('.user-mention');
     if (el) {
-      author = el.innerText;
+      author = el['innerText'];
       author = author.replace('@', '');
     }
     return author;
