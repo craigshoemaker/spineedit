@@ -45,4 +45,4 @@ Created by [Craig Shoemaker](https://github.com/craigshoemaker) and [Frank Hu](h
 
 Thanks to [Erika Doyle](https://github.com/erikadoyle) and [John Papa](https://github.com/johnpapa) for feedback and suggestions.
 
-For contributing, refer to the [developer notes](./developer-notes).
+For contributing, refer to the [developer notes](developer-notes.md).
