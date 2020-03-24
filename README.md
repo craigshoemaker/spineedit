@@ -8,9 +8,9 @@ A browser extension that fosters collaboration and makes it easy to edit Microso
 
 Get to know SpineEdit by watching the following introductory videos for working with:
 
-- Video: How to make a Pull Request to [Docs](https://youtu.be/3YmhpujaTtY)
-- Video: How to make a Pull Request to [Learn](https://youtu.be/sar8aFsVBFA)
-- Video: How to create a [GitHub issue](https://youtu.be/HgFkW6JKyvg)
+- Video: [How to make a Pull Request to Docs](https://youtu.be/3YmhpujaTtY)
+- Video: [How to make a Pull Request to Learn](https://youtu.be/sar8aFsVBFA)
+- Video: [How work with GitHub issues](https://youtu.be/HgFkW6JKyvg)
 
 ## Installation
 
