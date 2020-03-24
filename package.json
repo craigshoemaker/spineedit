@@ -1,9 +1,10 @@
 {
   "name": "spineedit",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "scripts": {
     "pretty": "pretty-quick",
-    "lint-fix": "eslint ./src --ext .js --fix"
+    "lint-fix": "eslint ./src --ext .js --fix",
+    "build": "gulp build"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
