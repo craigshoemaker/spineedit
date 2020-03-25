@@ -4,9 +4,9 @@
 
 A browser extension that fosters collaboration and makes it easy to edit Microsoft docs.
 
-## Introductory Videos
+## Introductory videos
 
-Get to know SpineEdit by watching the following introductory videos for working with:
+Get to know SpineEdit by watching the following introductory videos:
 
 - Video: [How to make a Pull Request to Docs](https://youtu.be/3YmhpujaTtY)
 - Video: [How to make a Pull Request to Learn](https://youtu.be/sar8aFsVBFA)
