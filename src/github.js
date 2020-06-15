@@ -49,7 +49,7 @@ function getRules() {
 }
 
 function customize() {
-  return webProperties.commonCustomizations.updateExistingLink(webProperties.github);
+  webProperties.commonCustomizations.updateExistingLink(webProperties.github);
 }
 
 function getAuthor() {

@@ -17,33 +17,26 @@ webProperties.learn = {
  */
 
 function customize() {
-  const body = document.querySelector('body');
-  const attribute = 'data-spineedit';
-  const isProcessed = !!body.getAttribute(attribute);
+  const actionList = document.querySelector('.action-list');
+  const firstLI = document.querySelector('ul.action-list:first-child li');
+  const listButton = firstLI.querySelector('button');
 
-  if (!isProcessed) {
-    body.setAttribute(attribute, 'true');
-    const actionList = document.querySelector('.action-list');
-    const firstLI = document.querySelector('ul.action-list:first-child li');
-    const listButton = firstLI.querySelector('button');
+  if (actionList && firstLI) {
+    const editListItem = document.createElement('LI');
+    const editButton = document.createElement('A');
+    editButton.setAttribute('class', listButton.getAttribute('class'));
+    editButton.innerText = 'Edit';
 
-    if (actionList && firstLI) {
-      const editListItem = document.createElement('LI');
-      const editButton = document.createElement('A');
-      editButton.setAttribute('class', listButton.getAttribute('class'));
-      editButton.innerText = 'Edit';
+    const gitHubUrlMeta = document.querySelector(webProperties.learn.selector);
+    const gitHubUrl = gitHubUrlMeta.getAttribute(webProperties.learn.attribute);
 
-      const gitHubUrlMeta = document.querySelector(webProperties.learn.selector);
-      const gitHubUrl = gitHubUrlMeta.getAttribute(webProperties.learn.attribute);
+    let url = gitHubUrl;
+    webProperties.learn.rules.forEach(rule => (url = rule.apply(url)));
 
-      let url = gitHubUrl;
-      webProperties.learn.rules.forEach(rule => (url = rule.apply(url)));
-
-      editButton.setAttribute('href', url);
-      editButton.setAttribute('target', '_blank');
-      editListItem.appendChild(editButton);
-      actionList.insertBefore(editListItem, firstLI);
-    }
+    editButton.setAttribute('href', url);
+    editButton.setAttribute('target', '_blank');
+    editListItem.appendChild(editButton);
+    actionList.insertBefore(editListItem, firstLI);
   }
 }
 

@@ -48,8 +48,7 @@ const getWebPropertyKey = (url, hostname) => {
 window.webProperties.commonCustomizations = {
   updateExistingLink: webProperty => {
     const anchors = document.querySelectorAll(webProperty.selector);
-    [].forEach.call(anchors, a => {
-      // [].forEach.call is a way of being able to iterate over the NodeList (anchors)
+    anchors.forEach(a => {
       const author = webProperty.getAuthor();
       let url = a.getAttribute(webProperty.attribute);
       webProperty.rules.forEach(rule => {
@@ -70,33 +69,28 @@ window.webProperties.commonCustomizations = {
 };
 
 const transformation = {
-  run: (webProperty, request) => {
+  run: webProperty => {
     if (webProperty.isMatch(window.location.pathname)) {
       webProperty.customize();
-      chrome.runtime.sendMessage({
-        action: 'loadComplete',
-        id: request.id,
-      });
     }
   },
 };
 
-const load = request => {
+const load = () => {
   const key = getWebPropertyKey(window.location.href, window.location.hostname);
   webProperty = webProperties[key];
   if (webProperty) {
-    transformation.run(webProperty, request);
+    transformation.run(webProperty);
   }
 };
 
 const actions = {
-  // activated: request => load(request),
-  activated: request => load(request),
-  updateComplete: request => load(request),
+  activated: () => load(),
+  updateComplete: () => load(),
 };
 
 chrome.runtime.onMessage.addListener(request => {
   if (actions[request.action]) {
-    actions[request.action](request);
+    actions[request.action]();
   }
 });

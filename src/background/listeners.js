@@ -1,8 +1,6 @@
 'use strict';
 
 const IS_PRODUCTION = false;
-const intervals = {};
-const getIntervalId = () => Math.floor(Math.random() * 10000) + 1;
 
 const actions = {
   log: ({ action, url, source }) => {
@@ -17,30 +15,19 @@ const actions = {
       ga('send', 'event', action, url, source);
     }
   },
-  loadComplete: ({ id }) => clearInterval(intervals[id]),
 };
 
 chrome.tabs.onActivated.addListener(function(tab /* , changeInfo */) {
-  const id = getIntervalId();
-  intervals[id] = setInterval(function() {
-    chrome.tabs.sendMessage(tab.tabId, {
-      action: 'activated',
-      origin: 'activated',
-      id,
-    });
-  }, 500);
+  chrome.tabs.sendMessage(tab.tabId, {
+    action: 'activated',
+    origin: 'activated',
+  });
 });
 
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo /*, tab */) {
-  if (changeInfo.status === 'complete') {
-    const id = getIntervalId();
-    intervals[id] = setInterval(function() {
-      chrome.tabs.sendMessage(tabId, {
-        action: 'updateComplete',
-        id,
-      });
-    }, 500);
-  }
+chrome.tabs.onUpdated.addListener(function(tabId /* changeInfo, tab */) {
+  chrome.tabs.sendMessage(tabId, {
+    action: 'updateComplete',
+  });
 });
 
 chrome.runtime.onInstalled.addListener(() => {
