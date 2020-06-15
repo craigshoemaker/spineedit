@@ -3,6 +3,7 @@
 window.webProperties = window['webProperties'] || {};
 
 let webProperty;
+let hasRun = false;
 
 window.spineEdit = {
   LINE_BREAK: '%0A',
@@ -77,10 +78,13 @@ const transformation = {
 };
 
 const load = () => {
-  const key = getWebPropertyKey(window.location.href, window.location.hostname);
-  webProperty = webProperties[key];
-  if (webProperty) {
-    transformation.run(webProperty);
+  if (!hasRun) {
+    const key = getWebPropertyKey(window.location.href, window.location.hostname);
+    webProperty = webProperties[key];
+    if (webProperty) {
+      transformation.run(webProperty);
+    }
+    hasRun = true;
   }
 };
 
