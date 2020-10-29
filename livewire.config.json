@@ -1,0 +1,8 @@
+{
+  "title": "SpineEdit",
+  "description": "The browser extension that fosters collaboration and makes it easy to edit Microsoft docs.",
+  "videoUrl": "https://youtu.be/3YmhpujaTtY",
+  "categories": ["Docs maintenance", "GitHub PRs"],
+  "languages": ["JavaScript", "HTML", "CSS"],
+  "technologies": ["Browser Extension"]
+}
