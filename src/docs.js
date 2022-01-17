@@ -30,7 +30,7 @@ function customize() {
       spineEdit.LINE_BREAK
     }${
       spineEdit.LINE_BREAK
-    }${commonRules.addDivider()}${this.getPublicUrl()}" class="button is-text has-inner-focus is-small is-icon-only-touch">Email Author</a>`;
+    }${commonRules.addDivider()}${this.getPublicUrl()}" class="button  button button-clear button-sm has-inner-focus">Email Author</a>`;
     actionList.insertBefore(emailListItem, editListItem);
   }
 }
