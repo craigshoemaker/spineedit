@@ -1,6 +1,6 @@
 {
   "name": "SpineEdit",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "short_name": "SpineEdit - Edit Microsoft docs in the browser",
   "description": "When working with Microsoft docs in the browser, you can open an editor in the private repository for quick edits and collaboration.",
   "manifest_version": 2,
@@ -26,13 +26,9 @@
     {
       "matches": [
         "https://docs.microsoft.com/*",
-        "http://docs.microsoft.com/*",
-        "http://github.com/MicrosoftDocs/*",
-        "https://github.com/MicrosoftDocs/*",
-        "http://github.com/issues/*",
-        "https://github.com/issues/*"
+        "http://docs.microsoft.com/*"
       ],
-      "js": ["content.js", "docs.js", "github.js"],
+      "js": ["content.js", "docs.js"],
       "run_at": "document_idle",
       "all_frames": false,
       "match_about_blank": false
@@ -42,9 +38,7 @@
     "activeTab",
     "declarativeContent",
     "https://docs.microsoft.com/*",
-    "http://docs.microsoft.com/*",
-    "http://github.com/MicrosoftDocs/*",
-    "https://github.com/MicrosoftDocs/*"
+    "http://docs.microsoft.com/*"
   ],
   "content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'"
 }
