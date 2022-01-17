@@ -1,7 +1,7 @@
 'use strict';
 
 webProperties.docs = {
-  attribute: 'data-original_content_git_url',
+  attribute: 'href',
   rules: getRules(),
   selector: `a[data-original_content_git_url]`,
   customize,
@@ -60,10 +60,6 @@ function getRules() {
   return [
     // switch from the read-only view to the editor
     { apply: url => url.replace('/blob/', '/edit/') },
-
-    // switch from the live branch to the master branch
-    { apply: url => url.replace('/live/', '/master/') },
-
     { apply: url => commonRules.addDescription(url) },
     { apply: url => commonRules.addLineBreak(url) },
     { apply: url => commonRules.addLineBreak(url) },
