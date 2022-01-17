@@ -36,11 +36,7 @@ const getWebPropertyKey = (url, hostname) => {
   if (hostname === 'github.com') {
     returnValue = 'github';
   } else if (hostname === 'docs.microsoft.com') {
-    if (/\/learn\//.test(url)) {
-      returnValue = 'learn';
-    } else {
-      returnValue = 'docs';
-    }
+    returnValue = 'docs';
   }
 
   return returnValue;
