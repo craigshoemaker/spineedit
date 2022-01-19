@@ -62,7 +62,7 @@ function getRules() {
     { apply: url => url.replace('/blob/', '/edit/') },
 
     // switch to the private repository
-    { apply: url => url.replace(/\/\/(.*)-docs\//, '//$1-docs-pr/') },
+    { apply: url => url.replace(/\/\/(.*?)-docs\//, '//$1-docs-pr/') },
     { apply: url => commonRules.addDescription(url) },
     { apply: url => commonRules.addLineBreak(url) },
     { apply: url => commonRules.addLineBreak(url) },
