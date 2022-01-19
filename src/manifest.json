@@ -1,6 +1,6 @@
 {
   "name": "SpineEdit",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "short_name": "SpineEdit - Edit Microsoft docs in the browser",
   "description": "When working with Microsoft docs in the browser, you can open an editor in the private repository for quick edits and collaboration.",
   "manifest_version": 2,
