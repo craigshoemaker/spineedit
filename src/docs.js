@@ -21,6 +21,7 @@ function customize() {
 
   const actionList = document.querySelector('.action-list');
   const editListItem = document.querySelector('#contenteditbtn');
+  const classList = editListItem.querySelector('a').className;
 
   if (actionList && editListItem) {
     const emailAddress = `${this.getAlias()}@microsoft.com`;
@@ -30,7 +31,7 @@ function customize() {
       spineEdit.LINE_BREAK
     }${
       spineEdit.LINE_BREAK
-    }${commonRules.addDivider()}${this.getPublicUrl()}" class="button  button button-clear button-sm has-inner-focus">Email Author</a>`;
+    }${commonRules.addDivider()}${this.getPublicUrl()}" class="${classList}">Email Author</a>`;
     actionList.insertBefore(emailListItem, editListItem);
   }
 }
