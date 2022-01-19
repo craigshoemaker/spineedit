@@ -46,9 +46,8 @@ window.webProperties.commonCustomizations = {
     anchors.forEach(a => {
       const author = webProperty.getAuthor();
       let url = a.getAttribute(webProperty.attribute);
-      const href = a.getAttribute('href');
       webProperty.rules.forEach(rule => {
-        url = rule.apply(url, author, href);
+        url = rule.apply(url, author);
       });
       a.setAttribute('href', url);
       a.setAttribute('target', '_blank');

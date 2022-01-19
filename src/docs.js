@@ -63,7 +63,6 @@ function parseUrl(url) {
   let account = '';
   let repo = '';
   let branch = '';
-  let isDotNet = false;
 
   path = url.replace(/https?:\/\/github.com\//, '');
   path = path.replace(/\/(blob|edit)/, ''); // normalize url between href and git source URLs
@@ -75,14 +74,14 @@ function parseUrl(url) {
     branch = segments[2];
   }
 
-  function getEditUrl(editBranch) {
+  function getEditUrl() {
+    let editBranch = 'main';
+
     const index = url.indexOf(branch) + branch.length + 1;
     const suffix = url.substr(index);
 
     if(/azure-docs-pr/.test(repo)) {
       editBranch = 'master';
-    } else {
-      editBranch = 'main';
     }
 
     const editUrl = `https://github.com/${account}/${repo}/edit/${editBranch}/${suffix}`;
@@ -93,7 +92,6 @@ function parseUrl(url) {
     account,
     repo,
     branch,
-    isDotNet,
     url,
     getEditUrl
   };
@@ -101,15 +99,7 @@ function parseUrl(url) {
 
 function getRules() {
   return [
-    // switch from the read-only view to the editor
-    { apply: url => url.replace('/blob/', '/edit/') },
-
-    // switch to the private repository
-    { apply: (gitSourceUrl, author, hrefUrl) => {
-      const parsedHref = parseUrl(hrefUrl);
-      const parsedSource = parseUrl(gitSourceUrl);
-      return parsedSource.getEditUrl(parsedHref.branch);
-    }},
+    { apply: url => parseUrl(url).getEditUrl() },
     { apply: url => commonRules.addDescription(url) },
     { apply: url => commonRules.addLineBreak(url) },
     { apply: url => commonRules.addLineBreak(url) },
