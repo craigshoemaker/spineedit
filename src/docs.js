@@ -1,7 +1,7 @@
 'use strict';
 
 webProperties.docs = {
-  attribute: 'data-original_content_git_url',
+  attribute: 'href',
   rules: getRules(),
   selector: `a[data-original_content_git_url]`,
   customize,
@@ -30,7 +30,7 @@ function customize() {
       spineEdit.LINE_BREAK
     }${
       spineEdit.LINE_BREAK
-    }${commonRules.addDivider()}${this.getPublicUrl()}" class="button is-text has-inner-focus is-small is-icon-only-touch">Email Author</a>`;
+    }${commonRules.addDivider()}${this.getPublicUrl()}" class="button  button button-clear button-sm has-inner-focus">Email Author</a>`;
     actionList.insertBefore(emailListItem, editListItem);
   }
 }
@@ -61,9 +61,8 @@ function getRules() {
     // switch from the read-only view to the editor
     { apply: url => url.replace('/blob/', '/edit/') },
 
-    // switch from the live branch to the master branch
-    { apply: url => url.replace('/live/', '/master/') },
-
+    // switch to the private repository
+    { apply: url => url.replace(/\/\/(.*)-docs\//, '//$1-docs-pr/') },
     { apply: url => commonRules.addDescription(url) },
     { apply: url => commonRules.addLineBreak(url) },
     { apply: url => commonRules.addLineBreak(url) },

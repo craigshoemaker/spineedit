@@ -33,14 +33,8 @@ window.commonRules = {
 const getWebPropertyKey = (url, hostname) => {
   let returnValue = '';
 
-  if (hostname === 'github.com') {
-    returnValue = 'github';
-  } else if (hostname === 'docs.microsoft.com') {
-    if (/\/learn\//.test(url)) {
-      returnValue = 'learn';
-    } else {
-      returnValue = 'docs';
-    }
+  if (hostname === 'docs.microsoft.com') {
+    returnValue = 'docs';
   }
 
   return returnValue;

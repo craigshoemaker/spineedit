@@ -25,19 +25,7 @@ Install via the [Chrome web store](https://chrome.google.com/webstore/detail/spi
 - Click on the **Edit** button to open the GitHub editor in the private repository
 - Click on the **Email Author** button to open an email in your default mail client.
 
-### Learn modules
-
-- Click on the **Edit** button to open the GitHub editor in the private repository
-
-### GitHub issues list
-
-- Click on the **Content Source** link to open the GitHub editor in the private repository
-
 > **NOTE** These workflows only work if you have access to the destination repository.
-
-## Known issues
-
-- When opening links from _github.com/issues_ the _Content Source_ link doesn't open in a new tab
 
 ## Acknowledgements
 

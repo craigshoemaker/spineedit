@@ -13,7 +13,3 @@
 
   - Click on the **Edit** button
   - Click on the **Email Author** button
-
-- On _github.com_, open links using left and right-clicks, then click on the **Content Source** link:
-  - [github.com/issues/assigned](https://github.com/issues/assigned)
-  - [github.com/MicrosoftDocs/azure-docs/issues](https://github.com/MicrosoftDocs/azure-docs/issues)
