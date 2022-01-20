@@ -65,7 +65,7 @@ function parseUrl(url) {
   let branch = '';
 
   path = url.replace(/https?:\/\/github.com\//, '');
-  path = path.replace(/\/(blob|edit)/, ''); // normalize url between href and git source URLs
+  path = path.replace(/\/(blob|edit)/, ''); // remove editing modes from URL
   const segments = path.split('/');
 
   if (segments.length > 2) {
