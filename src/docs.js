@@ -75,16 +75,10 @@ function parseUrl(url) {
   }
 
   function getEditUrl() {
-    let editBranch = 'main';
-
     const index = url.indexOf(branch) + branch.length + 1;
     const suffix = url.substr(index);
 
-    if(/azure-docs-pr/.test(repo)) {
-      editBranch = 'master';
-    }
-
-    const editUrl = `https://github.com/${account}/${repo}/edit/${editBranch}/${suffix}`;
+    const editUrl = `https://github.com/${account}/${repo}/edit/main/${suffix}`;
     return editUrl;
   }
 
