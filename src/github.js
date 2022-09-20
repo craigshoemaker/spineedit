@@ -64,7 +64,7 @@ function getAuthor() {
 
 function getPublicUrl() {
   let url = '';
-  const a = document.querySelector('a[href^="https://docs.microsoft.com"]');
+  const a = document.querySelector('a[href^="https://learn.microsoft.com"]');
   if (a) {
     url = a.getAttribute('href');
   }

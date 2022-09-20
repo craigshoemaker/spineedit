@@ -9,7 +9,7 @@
 
 ## Test plan
 
-- Open an [article](https://docs.microsoft.com/azure/azure-functions/functions-create-your-first-function-visual-studio) on _docs.microsoft.com_:
+- Open an [article](https://learn.microsoft.com/azure/azure-functions/functions-create-your-first-function-visual-studio) on _learn.microsoft.com_:
 
-  - Click on the **Edit** button
-  - Click on the **Email Author** button
+  - Select the **Edit** button
+  - Select the **Email Author** button

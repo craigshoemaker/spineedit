@@ -25,8 +25,8 @@
   "content_scripts": [
     {
       "matches": [
-        "https://docs.microsoft.com/*",
-        "http://docs.microsoft.com/*"
+        "https://learn.microsoft.com/*",
+        "http://learn.microsoft.com/*"
       ],
       "js": ["content.js", "docs.js"],
       "run_at": "document_idle",
@@ -37,8 +37,8 @@
   "permissions": [
     "activeTab",
     "declarativeContent",
-    "https://docs.microsoft.com/*",
-    "http://docs.microsoft.com/*"
+    "https://learn.microsoft.com/*",
+    "http://learn.microsoft.com/*"
   ],
   "content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'"
 }

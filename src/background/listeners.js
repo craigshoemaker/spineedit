@@ -8,7 +8,7 @@ const actions = {
       message
         - action: Always equals 'log' in this function
         - url:    The public URL of the published article
-        - source: Domain hostname, for example: 'docs.microsoft.com'
+        - source: Domain hostname, for example: 'learn.microsoft.com'
     */
 
     if (IS_PRODUCTION) {
@@ -34,7 +34,7 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
     chrome.declarativeContent.onPageChanged.addRules([
       {
-        conditions: [createCondition('docs.microsoft.com')],
+        conditions: [createCondition('learn.microsoft.com')],
         actions: [new chrome.declarativeContent.ShowPageAction()],
       },
     ]);
