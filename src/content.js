@@ -31,10 +31,19 @@ window.commonRules = {
 };
 
 const getWebPropertyKey = (url, hostname) => {
-  let returnValue = '';
 
-  if (hostname === 'learn.microsoft.com') {
+  const trainingModuleURLPattern = /https:\/\/learn\.microsoft\.com\/.{5}\/.*training\/modules\//;
+  const isTrainingModule = url.match(trainingModuleURLPattern);
+  
+  const gitHubURLPattern = /https:\/\/github\.com/;
+  const isGitHub = url.match(gitHubURLPattern);
+  
+  let returnValue = 'docs';
+
+  if (isTrainingModule) {
     returnValue = 'learn';
+  } else if (isGitHub) {
+    returnValue = 'github'
   }
 
   return returnValue;
