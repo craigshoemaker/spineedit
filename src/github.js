@@ -74,3 +74,9 @@ function getPublicUrl() {
 function isMatch(pathname) {
   return /MicrosoftDocs/.test(pathname);
 }
+
+chrome.runtime.onMessage.addListener(request => {
+  if (actions[request.action]) {
+    actions[request.action]();
+  }
+});

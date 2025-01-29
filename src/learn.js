@@ -80,3 +80,9 @@ function getRules() {
     },
   ];
 }
+
+chrome.runtime.onMessage.addListener(request => {
+  if (actions[request.action]) {
+    actions[request.action]();
+  }
+});

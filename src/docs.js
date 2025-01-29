@@ -101,3 +101,9 @@ function getRules() {
     { apply: (url, author) => commonRules.addAuthor(url, author) },
   ];
 }
+
+chrome.runtime.onMessage.addListener(request => {
+  if (actions[request.action]) {
+    actions[request.action]();
+  }
+});
