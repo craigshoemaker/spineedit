@@ -1,6 +1,6 @@
 {
   "name": "spineedit",
-  "version": "3.05",
+  "version": "3.10",
   "scripts": {
     "pretty": "pretty-quick",
     "lint-fix": "eslint ./src --ext .js --fix",
@@ -10,7 +10,7 @@
     "eslint": "^8.32.0",
     "glob-parent": "^6.0.2",
     "gulp": "^5.0.0",
-    "gulp-minify": "^3.1.0",
+    "gulp-minify": "^3.0.0",
     "gulp-replace": "^1.0.0",
     "gulp-zip": "^5.0.1",
     "prettier": "^2.8.4",
