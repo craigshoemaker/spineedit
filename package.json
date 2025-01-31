@@ -1,6 +1,6 @@
 {
   "name": "spineedit",
-  "version": "3.10",
+  "version": "3.06.0",
   "scripts": {
     "pretty": "pretty-quick",
     "lint-fix": "eslint ./src --ext .js --fix",
